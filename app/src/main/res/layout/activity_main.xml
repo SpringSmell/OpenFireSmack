@@ -13,15 +13,20 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:orientation="vertical"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:text="收到消息"
+            android:layout_height="wrap_content" />
         <TextView
             android:id="@+id/resultTv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
             android:minHeight="50dp"
-            android:text="接收到消息：" />
+            android:text="" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -55,22 +60,52 @@
             android:orientation="horizontal">
 
             <EditText
+                android:id="@+id/registerAccountEt"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="请输入账户"
+                android:text="test" />
+
+            <EditText
+                android:id="@+id/registerPasswordEt"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="请输入密码"
+                android:inputType="textPassword"
+                android:padding="10dp"
+                android:text="123" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/registerBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="注册"></Button>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <EditText
                 android:id="@+id/accountEt"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="admin"
-                android:hint="请输入账户" />
+                android:hint="请输入账户"
+                android:text="chris" />
 
             <EditText
                 android:id="@+id/passwordEt"
                 android:layout_width="0dp"
-                android:layout_weight="1"
-                android:text="900930"
-                android:inputType="textPassword"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:hint="请输入密码"
-                android:padding="10dp" />
+                android:inputType="textPassword"
+                android:padding="10dp"
+                android:text="123" />
         </LinearLayout>
 
         <Button
@@ -81,21 +116,24 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:orientation="horizontal"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
             <EditText
                 android:id="@+id/userName"
                 android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:hint="请输入用户名"
-                android:text=""
-                android:layout_height="wrap_content" />
+                android:text="admin" />
+
             <EditText
                 android:id="@+id/inputMsg"
                 android:layout_width="0dp"
-                android:layout_weight="1"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:gravity="center_vertical"
                 android:hint="请输入消息"
+                android:text="hello"
                 android:minHeight="50dp" />
         </LinearLayout>
 
@@ -105,6 +143,41 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="发送"
+            android:padding="10dp" />
+
+        <EditText
+            android:id="@+id/chatRoomNickname"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="请输入聊天室房间"
+            android:text="testRoom" />
+
+        <Button
+            android:id="@+id/createChatRoom"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="创建聊天群"
+            android:padding="10dp" />
+
+        <Button
+            android:id="@+id/joinChatRoom"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="加入聊天群"
+            android:padding="10dp" />
+
+        <EditText
+            android:id="@+id/inputChatRoomMsg"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="请输入消息"
+            android:text="Hello" />
+
+        <Button
+            android:id="@+id/sendChatRoomMsg"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="发送聊天室消息"
             android:padding="10dp" />
 
         <Button
@@ -125,8 +198,8 @@
         <ImageView
             android:id="@+id/imgIv"
             android:layout_width="match_parent"
-            android:scaleType="centerInside"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:scaleType="centerInside" />
     </LinearLayout>
 
 </ScrollView>
