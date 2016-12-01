@@ -181,6 +181,13 @@
             android:padding="10dp" />
 
         <Button
+            android:id="@+id/destroyChatRoom"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="销毁聊天室"
+            android:padding="10dp" />
+
+        <Button
             android:id="@+id/disconnectBtn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

@@ -124,7 +124,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         registerAccount = ( EditText ) findViewById ( R.id.registerAccountEt );
         registerPassword = ( EditText ) findViewById ( R.id.registerPasswordEt );
         chatRoomEt = ( EditText ) findViewById ( R.id.chatRoomNickname );
-        inputChatRoomEt= ( EditText ) findViewById ( R.id.inputChatRoomMsg );
+        inputChatRoomEt = ( EditText ) findViewById ( R.id.inputChatRoomMsg );
 
         ipEt.setText ( ipStr );
         portEt.setText ( port + "" );
@@ -137,6 +137,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         findViewById ( R.id.createChatRoom ).setOnClickListener ( this );
         findViewById ( R.id.joinChatRoom ).setOnClickListener ( this );
         findViewById ( R.id.sendChatRoomMsg ).setOnClickListener ( this );
+        findViewById ( R.id.destroyChatRoom ).setOnClickListener ( this );
     }
 
     @Override public void onClick ( View view ) {
@@ -218,13 +219,24 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.sendChatRoomMsg:
                 try {
-                    if(muc!=null) {
+                    if ( muc != null ) {
                         muc.sendMessage ( "Hello client" );
-                    }else{
-                        sendMessage ( "加入房间失败","发送聊天室消息" );
+                    } else {
+                        sendMessage ( "加入房间失败", "发送聊天室消息" );
                     }
                 } catch ( SmackException.NotConnectedException e ) {
-                    sendMessage ( e.getMessage (),"发送聊天室消息" );
+                    sendMessage ( e.getMessage (), "发送聊天室消息" );
+                    e.printStackTrace ();
+                }
+                break;
+            case R.id.destroyChatRoom:
+                try {
+                    muc.destroy ( chatRoomEt.getText ().toString (),null );//需设置权限
+                } catch ( SmackException.NoResponseException e ) {
+                    e.printStackTrace ();
+                } catch ( XMPPException.XMPPErrorException e ) {
+                    e.printStackTrace ();
+                } catch ( SmackException.NotConnectedException e ) {
                     e.printStackTrace ();
                 }
                 break;
@@ -253,13 +265,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             public void run () {
 
                 try {
-//                    if ( connection == null ) {
-//                        connection = getConnection ( ipStr, port );
-//                    } else if ( connection != null ) {
-//                        connection.disconnect ();
-//                    }
-
-
 //                    SASLAuthentication.unBlacklistSASLMechanism("PLAIN");
 //                    SASLAuthentication.unBlacklistSASLMechanism("SCRAM-SHA-1");
 //
@@ -478,7 +483,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             VCard vCard = vCardManager
                     .loadVCard ( accountEt.getText ().toString () );
             ByteArrayInputStream bais = new ByteArrayInputStream ( vCard.getAvatar () );
-//                    imgIv.setImageDrawable ( Drawable.createFromStream ( bais, "image" ) );
+//            imgIv.setImageDrawable ( Drawable.createFromStream ( bais, "image" ) );
             imgIv.setImageBitmap ( BitmapFactory.decodeStream ( bais ) );
         } catch ( SmackException.NoResponseException e ) {
             e.printStackTrace ();
@@ -511,6 +516,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         return connection;
     }
+
+
 
     private void disconnect () {
 
